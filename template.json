@@ -1,0 +1,27 @@
+{
+  "variables": {
+    "aws_access_key": "",
+    "aws_secret_key": "",
+    "instance_type": "t2.micro",
+    "region": "us-east-2",
+    "bucket_name": "bmccown-jenkins"
+  },
+  "builders": [{
+    "type": "amazon-ebs",
+    "source_ami": "ami-9c0638f9",
+    "instance_type": "{{user `instance_type`}}",
+    "region": "{{user `region`}}",
+    "ssh_username": "centos",
+    "ami_name": "jenkins {{timestamp}}"
+  }],
+ 
+  "provisioners": [
+  {
+    "type": "shell",
+    "script": "jenkins-setup.sh",
+    "environment_vars": [
+      "BUCKET_NAME={{user `bucket_name`}}"
+    ]
+  }
+  ]
+}
