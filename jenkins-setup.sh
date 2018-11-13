@@ -27,3 +27,7 @@ sudo sed -i s/SELINUX=enforcing/SELINUX=permissive/g /etc/selinux/config
 sudo setenforce 0
 
 sudo systemctl restart httpd
+
+echo "export BUCKET_NAME=$BUCKET_NAME" | sudo tee -a /etc/profile
+sudo mkdir /scripts
+sudo chmod 755 /scripts

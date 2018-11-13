@@ -1,3 +1,2 @@
 #!/bin/bash
-#update push
-sudo aws s3 sync /var/lib/jenkins s3://bmccown-jenkins/jenkins --delete --no-follow-symlinks
+sudo aws s3 sync /var/lib/jenkins s3://$BUCKET_NAME/jenkins --delete --no-follow-symlinks

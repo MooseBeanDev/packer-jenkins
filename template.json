@@ -4,7 +4,8 @@
     "aws_secret_key": "",
     "instance_type": "t2.micro",
     "region": "us-east-2",
-    "bucket_name": "bmccown-jenkins"
+    "bucket_name": "bmccown-jenkins",
+    "restore_jenkins": "true"
   },
   "builders": [{
     "type": "amazon-ebs",
@@ -20,7 +21,21 @@
     "type": "shell",
     "script": "jenkins-setup.sh",
     "environment_vars": [
-      "BUCKET_NAME={{user `bucket_name`}}"
+      "BUCKET_NAME={{user `bucket_name`}}",
+      "RESTORE_JENKINS={{user `restore_jenkins`}}"
+    ]
+  },
+  {
+    "type": "file",
+    "source": "restore-jenkins.sh",
+    "destination": "/scripts/restore-jenkins.sh"
+  },
+  {
+    "type": "shell",
+    "script": "configure-restore-jenkins.sh",
+    "environment_vars": [
+      "BUCKET_NAME={{user `bucket_name`}}",
+      "RESTORE_JENKINS={{user `restore_jenkins`}}"
     ]
   }
   ]
