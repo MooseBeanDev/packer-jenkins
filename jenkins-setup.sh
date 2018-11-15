@@ -30,4 +30,5 @@ sudo systemctl restart httpd
 
 echo "export BUCKET_NAME=$BUCKET_NAME" | sudo tee -a /etc/profile
 sudo mkdir /scripts
+sudo chown centos:centos /scripts
 sudo chmod 755 /scripts
