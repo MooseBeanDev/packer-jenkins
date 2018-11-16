@@ -1,1 +1,2 @@
-get if statement working
+add backup script to provisioning scripts
+move backup script from scripts into jenkins location

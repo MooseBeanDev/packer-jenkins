@@ -5,7 +5,8 @@
     "instance_type": "t2.micro",
     "region": "us-east-2",
     "bucket_name": "bmccown-jenkins",
-    "restore_jenkins": "true"
+    "restore_jenkins": "true",
+    "backup_jenkins": "true"
   },
   "builders": [{
     "type": "amazon-ebs",
@@ -31,11 +32,17 @@
     "destination": "/scripts/restore-jenkins.sh"
   },
   {
+    "type": "file",
+    "source": "backup-jenkins.sh",
+    "destination": "/scripts/backup-jenkins.sh"
+  },
+  {
     "type": "shell",
-    "script": "configure-restore-jenkins.sh",
+    "script": "configure-jenkins-scripts.sh",
     "environment_vars": [
       "BUCKET_NAME={{user `bucket_name`}}",
-      "RESTORE_JENKINS={{user `restore_jenkins`}}"
+      "RESTORE_JENKINS={{user `restore_jenkins`}}",
+      "BACKUP_JENKINS={{user `backup_jenkins`}}"
     ]
   }
   ]
