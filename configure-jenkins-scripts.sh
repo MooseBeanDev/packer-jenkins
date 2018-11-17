@@ -13,5 +13,5 @@ then
 	sudo chown jenkins:jenkins /var/lib/jenkins/scripts
 	sudo sed -i s/BUCKETNAME/$BUCKET_NAME/g /scripts/backup-jenkins.sh
 	sudo mv /scripts/backup-jenkins.sh /var/lib/jenkins/scripts/
-	sudo chown jenkins:jenkins /var/lib/jenkins/scripts/backup-jenkins
+	sudo chown jenkins:jenkins /var/lib/jenkins/scripts/backup-jenkins.sh
 fi
